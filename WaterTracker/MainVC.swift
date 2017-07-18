@@ -100,7 +100,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         waterView.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
         waterView.widthAnchor.constraint(equalTo: waterImageView.widthAnchor).isActive = true
         waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
-        waterView.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        waterView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     func setupOptions() {
