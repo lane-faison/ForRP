@@ -66,6 +66,8 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set Weight", style: .plain, target: self, action: #selector(goToSetWeight))
     
         view.addSubview(backView)
         view.addSubview(titleLabel)
@@ -74,10 +76,14 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         
         amountPicker.delegate = self
         amountPicker.dataSource = self
-        
+
         setupWaterFeature()
         displayWater()
         setupOptions()
+    }
+    
+    func goToSetWeight(){
+        performSegue(withIdentifier: "toSetWeight", sender: nil)
     }
 
     func setupWaterFeature() {
