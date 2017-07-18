@@ -49,6 +49,20 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
+    
+    let addButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 30
+        button.layer.borderColor = ColorScheme.lightPrimaryColor.cgColor
+        button.layer.borderWidth = 5
+        button.backgroundColor = .white
+        button.setTitle("Add", for: .normal)
+        button.setTitleColor(ColorScheme.darkPrimaryColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir next", size: 15)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +70,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         view.addSubview(backView)
         view.addSubview(titleLabel)
         view.addSubview(amountPicker)
+        view.addSubview(addButton)
         
         amountPicker.delegate = self
         amountPicker.dataSource = self
@@ -97,6 +112,11 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         amountPicker.heightAnchor.constraint(equalToConstant: 120).isActive = true
         amountPicker.widthAnchor.constraint(equalToConstant: 150).isActive = true
         amountPicker.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        
+        addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.topAnchor.constraint(equalTo: amountPicker.bottomAnchor).isActive = true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -108,7 +128,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(amounts[row])"
+        return "\(amounts[row]) oz"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
