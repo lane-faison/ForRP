@@ -8,7 +8,9 @@
 
 import UIKit
 
-class WeightCalcViewController: UIViewController {
+class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    var weights = ["Pounds (lbs)","Kilograms (kgs)"]
     
     let weightText: UITextField = {
         let text = UITextField()
@@ -46,12 +48,22 @@ class WeightCalcViewController: UIViewController {
         return button
     }()
     
+    let weightPicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        weightPicker.dataSource = self
+        weightPicker.delegate = self
         
         view.addSubview(weightText)
         view.addSubview(describeText)
         view.addSubview(saveButton)
+        view.addSubview(weightPicker)
         
         
         displayWeightSection()
@@ -85,6 +97,26 @@ class WeightCalcViewController: UIViewController {
         saveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         saveButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         saveButton.topAnchor.constraint(equalTo: describeText.bottomAnchor, constant: 160).isActive = true
+        
+        weightPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        weightPicker.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        weightPicker.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        weightPicker.topAnchor.constraint(equalTo: describeText.bottomAnchor).isActive = true
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return weights.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return weights[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     }
     
     
