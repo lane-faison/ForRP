@@ -31,10 +31,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Weight Calc View Controller-->
         <scene sceneID="pEs-IL-2Z6">
             <objects>
-                <viewController id="QzW-j4-dDd" sceneMemberID="viewController">
+                <viewController id="QzW-j4-dDd" customClass="WeightCalcViewController" customModule="WaterTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="haZ-Ba-WVI"/>
                         <viewControllerLayoutGuide type="bottom" id="5ON-Av-tQH"/>

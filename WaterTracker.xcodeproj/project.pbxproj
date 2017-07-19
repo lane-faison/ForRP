@@ -14,6 +14,7 @@
 		0F48C2F31F1EA7FF003E174B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F48C2F21F1EA7FF003E174B /* Assets.xcassets */; };
 		0F48C2F61F1EA7FF003E174B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F48C2F41F1EA7FF003E174B /* LaunchScreen.storyboard */; };
 		0F48C2FF1F1EABE8003E174B /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48C2FE1F1EABE8003E174B /* ColorScheme.swift */; };
+		0F78AD571F1FE1CA00767B4A /* WeightCalcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F78AD561F1FE1CA00767B4A /* WeightCalcViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0F48C2F51F1EA7FF003E174B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F48C2F71F1EA7FF003E174B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F48C2FE1F1EABE8003E174B /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		0F78AD561F1FE1CA00767B4A /* WeightCalcViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightCalcViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				0F48C2FD1F1EABCD003E174B /* Resources */,
 				0F48C2E81F1EA7FF003E174B /* AppDelegate.swift */,
 				0F48C2EA1F1EA7FF003E174B /* MainVC.swift */,
+				0F78AD561F1FE1CA00767B4A /* WeightCalcViewController.swift */,
 				0F48C2EC1F1EA7FF003E174B /* Main.storyboard */,
 				0F48C2F21F1EA7FF003E174B /* Assets.xcassets */,
 				0F48C2F41F1EA7FF003E174B /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F78AD571F1FE1CA00767B4A /* WeightCalcViewController.swift in Sources */,
 				0F48C2FF1F1EABE8003E174B /* ColorScheme.swift in Sources */,
 				0F48C2F11F1EA7FF003E174B /* WaterTracker.xcdatamodeld in Sources */,
 				0F48C2EB1F1EA7FF003E174B /* MainVC.swift in Sources */,
