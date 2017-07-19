@@ -36,7 +36,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }()
     
     let saveButton: UIButton = {
-       let button = UIButton()
+       let button = UIButton(type: .system)
         button.layer.cornerRadius = 30
         button.layer.borderColor = ColorScheme.lightPrimaryColor.cgColor
         button.layer.borderWidth = 5
