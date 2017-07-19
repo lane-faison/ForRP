@@ -21,7 +21,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let waterView: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = ColorScheme.defaultPrimaryColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -67,7 +67,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Set Weight", style: .plain, target: self, action: #selector(goToSetWeight))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Calculate Goal", style: .plain, target: self, action: #selector(goToSetWeight))
     
         view.addSubview(backView)
         view.addSubview(titleLabel)
