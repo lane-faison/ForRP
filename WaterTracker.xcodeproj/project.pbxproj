@@ -15,6 +15,8 @@
 		0F48C2F61F1EA7FF003E174B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F48C2F41F1EA7FF003E174B /* LaunchScreen.storyboard */; };
 		0F48C2FF1F1EABE8003E174B /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48C2FE1F1EABE8003E174B /* ColorScheme.swift */; };
 		0F78AD571F1FE1CA00767B4A /* WeightCalcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F78AD561F1FE1CA00767B4A /* WeightCalcViewController.swift */; };
+		0F8AC2D51F210F3500BA403C /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AC2D31F210F3500BA403C /* User+CoreDataClass.swift */; };
+		0F8AC2D61F210F3500BA403C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AC2D41F210F3500BA403C /* User+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		0F48C2F71F1EA7FF003E174B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F48C2FE1F1EABE8003E174B /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		0F78AD561F1FE1CA00767B4A /* WeightCalcViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightCalcViewController.swift; sourceTree = "<group>"; };
+		0F8AC2D31F210F3500BA403C /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0F8AC2D41F210F3500BA403C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		0F48C2E71F1EA7FF003E174B /* WaterTracker */ = {
 			isa = PBXGroup;
 			children = (
+				0F8AC2D71F210F4D00BA403C /* Model */,
 				0F48C2FD1F1EABCD003E174B /* Resources */,
 				0F48C2E81F1EA7FF003E174B /* AppDelegate.swift */,
 				0F48C2EA1F1EA7FF003E174B /* MainVC.swift */,
@@ -79,6 +84,23 @@
 				0F48C2FE1F1EABE8003E174B /* ColorScheme.swift */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		0F8AC2D71F210F4D00BA403C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AC2D31F210F3500BA403C /* User+CoreDataClass.swift */,
+				0F8AC2D81F210F5400BA403C /* Generated */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0F8AC2D81F210F5400BA403C /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				0F8AC2D41F210F3500BA403C /* User+CoreDataProperties.swift */,
+			);
+			name = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +178,8 @@
 			files = (
 				0F78AD571F1FE1CA00767B4A /* WeightCalcViewController.swift in Sources */,
 				0F48C2FF1F1EABE8003E174B /* ColorScheme.swift in Sources */,
+				0F8AC2D51F210F3500BA403C /* User+CoreDataClass.swift in Sources */,
+				0F8AC2D61F210F3500BA403C /* User+CoreDataProperties.swift in Sources */,
 				0F48C2F11F1EA7FF003E174B /* WaterTracker.xcdatamodeld in Sources */,
 				0F48C2EB1F1EA7FF003E174B /* MainVC.swift in Sources */,
 				0F48C2E91F1EA7FF003E174B /* AppDelegate.swift in Sources */,

@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var weights = ["Pounds (lbs)","Kilograms (kgs)"]
+    var weightUnit: Int?
     
     let weightText: UITextField = {
         let text = UITextField()
@@ -46,6 +48,9 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         button.setTitleColor(ColorScheme.darkPrimaryColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir next", size: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(setWeight), for: .touchUpInside)
+        
         return button
     }()
     
@@ -66,7 +71,6 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(describeText)
         view.addSubview(saveButton)
         view.addSubview(weightPicker)
-        
         
         displayWeightSection()
         
@@ -106,11 +110,23 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         weightPicker.topAnchor.constraint(equalTo: describeText.bottomAnchor).isActive = true
     }
     
-//    func calcWeight() {
-//        
-//        if weightText.text
-//        
-//    }
+    func setWeight() {
+  
+        if weightText.text != "" {
+            var user: User!
+            user = User(context: context)
+            user.weight = Int16(weightText.text!)!
+         
+            if weightUnit == nil || weightUnit == 0 {
+                user.units = 0
+            } else {
+                user.units = 1
+            }
+            
+            ad.saveContext()
+        }
+        
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -125,8 +141,6 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        weightUnit = pickerView.selectedRow(inComponent: 0)
     }
-    
-    
-    
 }
