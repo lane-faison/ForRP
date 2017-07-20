@@ -21,6 +21,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         text.textAlignment = .center
         text.text = nil
         text.placeholder = "Enter Weight Here"
+        text.keyboardType = .numberPad
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -50,6 +51,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     let weightPicker: UIPickerView = {
         let picker = UIPickerView()
+        
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -103,6 +105,12 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         weightPicker.widthAnchor.constraint(equalToConstant: 150).isActive = true
         weightPicker.topAnchor.constraint(equalTo: describeText.bottomAnchor).isActive = true
     }
+    
+//    func calcWeight() {
+//        
+//        if weightText.text
+//        
+//    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
