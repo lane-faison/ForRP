@@ -44,7 +44,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         button.layer.borderColor = ColorScheme.lightPrimaryColor.cgColor
         button.layer.borderWidth = 5
         button.backgroundColor = .white
-        button.setTitle("Save Goal", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.setTitleColor(ColorScheme.darkPrimaryColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir next", size: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
