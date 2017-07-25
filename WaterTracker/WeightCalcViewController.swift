@@ -22,7 +22,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         text.font = UIFont(name: "Avenir next", size: 20)
         text.textAlignment = .center
         text.text = nil
-        text.placeholder = "Enter Weight Here"
+        text.placeholder = "Enter Weight"
         text.keyboardType = .numberPad
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
