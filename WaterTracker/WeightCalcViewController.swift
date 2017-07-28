@@ -73,7 +73,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(weightPicker)
         
         displayWeightSection()
-        attemptFetch()
+//        attemptFetch()
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightCalcViewController.dismissKeyboard))
@@ -132,19 +132,33 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
-    func attemptFetch(){
+    func buttonClicked() {
         
-        let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
-        
-        do {
-            let results = try context.fetch(fetchedInfo)
-            print(results)
-        } catch {
-            return
-        }
-        
+        self.performSegue(withIdentifier: "toMainVC", sender: self)
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMainVC" {
+            if let destination = segue.destination as? MainVC {
+            }
+        }
+    }
+    
+//    func attemptFetch(){
+//        
+//        let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
+//        
+//        do {
+//            let results = try context.fetch(fetchedInfo)
+//            print("^^^^^^^^^^^^^^^^^^^^^^^")
+//            print(results)
+//        } catch {
+//            return
+//        }
+//        
+    
+//    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
