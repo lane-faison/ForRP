@@ -125,7 +125,10 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
             }
             
             ad.saveContext()
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(user.weight)
         }
+        
         
     }
     
@@ -136,7 +139,10 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         do {
             let results = try context.fetch(fetchedInfo)
             print(results)
+        } catch {
+            return
         }
+        
         
     }
     
