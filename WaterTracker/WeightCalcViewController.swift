@@ -133,6 +133,11 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
         
+        do {
+            let results = try context.fetch(fetchedInfo)
+            print(results)
+        }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
