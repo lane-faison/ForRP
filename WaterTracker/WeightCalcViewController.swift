@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
     
     var weights = ["Pounds (lbs)","Kilograms (kgs)"]
     var weightUnit: Int?
@@ -73,6 +73,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(weightPicker)
         
         displayWeightSection()
+        attemptFetch()
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightCalcViewController.dismissKeyboard))
@@ -125,6 +126,12 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
             
             ad.saveContext()
         }
+        
+    }
+    
+    func attemptFetch(){
+        
+        let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
         
     }
     
