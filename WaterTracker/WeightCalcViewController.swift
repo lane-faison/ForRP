@@ -79,7 +79,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(weightPicker)
         
         displayWeightSection()
-        //        attemptFetch()
+//        attemptFetch()
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightCalcViewController.dismissKeyboard))
