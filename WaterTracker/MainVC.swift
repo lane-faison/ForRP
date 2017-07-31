@@ -46,6 +46,16 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         return label
     }()
     
+    let completedLevelLabel: UILabel = {
+        let label = UILabel()
+        label.text = "100%"
+        label.font = UIFont(name: "Avenir next", size: 10)
+        label.textColor = ColorScheme.darkPrimaryColor
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let amountPicker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +107,6 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         user.units = Int16(units)
         
         
-        
         ad.saveContext()
         print(user)
         
@@ -135,6 +144,11 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         waterView.widthAnchor.constraint(equalTo: waterImageView.widthAnchor).isActive = true
         waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
         waterView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+//        completedLevelLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
+//        completedLevelLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+//        completedLevelLabel.leadingAnchor.constraint(equalTo: waterView.trailingAnchor).isActive = true
+//        completedLevelLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor).isActive = true
     }
     
     func setupOptions() {
@@ -157,7 +171,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         print("Attempting Fetch##############")
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-        let weightSort = NSSortDescriptor(key: "date", ascending: true)
+        let weightSort = NSSortDescriptor(key: "id", ascending: true)
         fetchRequest.sortDescriptors = [weightSort]
         
         
