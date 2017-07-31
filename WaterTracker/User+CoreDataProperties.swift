@@ -16,8 +16,8 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
+    @NSManaged public var id: Int16
     @NSManaged public var units: Int16
     @NSManaged public var weight: Int16
-    @NSManaged public var date: NSDate?
 
 }
