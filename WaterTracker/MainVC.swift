@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
+class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate, DataSentDelegate {
     
     var controller: NSFetchedResultsController<User>!
     
@@ -48,7 +48,6 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     
     let amountPicker: UIPickerView = {
         let picker = UIPickerView()
-    
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -89,8 +88,28 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     
     }
     
+    func updateWeight(weight: Int, units: Int) {
+        
+        var user: User!
+        user = User(context: context)
+        
+        user.weight = Int16(weight)
+        user.units = Int16(units)
+        
+        ad.saveContext()
+        print(user)
+        
+    }
+    
     func goToSetWeight(){
         performSegue(withIdentifier: "toSetWeight", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSetWeight" {
+            let weightCalcVC: WeightCalcViewController = segue.destination as! WeightCalcViewController
+            weightCalcVC.delegate = self
+        }
     }
 
     func setupWaterFeature() {
@@ -136,11 +155,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         print("Attempting Fetch##############")
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-   
         let weightSort = NSSortDescriptor(key: "weight", ascending: true)
         fetchRequest.sortDescriptors = [weightSort]
         
-        var result = [NSManagedObject]()
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -148,22 +165,16 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         self.controller = controller
         
         do {
-            let user = try context.fetch(fetchRequest)
-            
-            if let user = user as? [NSManagedObject] {
-                result = user
-                let stats = controller.fetchedObjects
-                
-                print("@@@@@@@@@@@@@")
-                print(stats?.count)
-            }
-            
+            try self.controller.performFetch()
         } catch {
             let error = error as NSError
             print("\(error)")
         }
-    
+        let information = controller.fetchedObjects
+        guard let currentInformation = information?[0] else { return }
         
+        print("######WEIGHT: \(currentInformation.weight)")
+        print("######UNITS: \(currentInformation.units)")
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
