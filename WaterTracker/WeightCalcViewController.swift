@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+protocol DataSentDelegate {
+    func updateWeight(weight: Int, units: Int)
+}
+
 class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NSFetchedResultsControllerDelegate {
     
     var weights = ["Pounds (lbs)","Kilograms (kgs)"]
@@ -39,7 +43,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }()
     
     let saveButton: UIButton = {
-       let button = UIButton(type: .system)
+        let button = UIButton(type: .system)
         button.layer.cornerRadius = 30
         button.layer.borderColor = ColorScheme.lightPrimaryColor.cgColor
         button.layer.borderWidth = 5
@@ -61,6 +65,8 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return picker
     }()
     
+    var delegate: DataSentDelegate? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,7 +79,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(weightPicker)
         
         displayWeightSection()
-//        attemptFetch()
+        //        attemptFetch()
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightCalcViewController.dismissKeyboard))
@@ -84,7 +90,6 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func dismissKeyboard() {
-        
         view.endEditing(true)
     }
     
@@ -112,53 +117,48 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func setWeight() {
-  
-        if weightText.text != "" {
-            var user: User!
-            user = User(context: context)
-            user.weight = Int16(weightText.text!)!
-         
-            if weightUnit == nil || weightUnit == 0 {
-                user.units = 0
-            } else {
-                user.units = 1
-            }
+        
+        if delegate != nil {
             
-            ad.saveContext()
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print(user.weight)
-        }
-        
-        
-    }
-    
-    func buttonClicked() {
-        
-        self.performSegue(withIdentifier: "toMainVC", sender: self)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toMainVC" {
-            if let destination = segue.destination as? MainVC {
+            if weightText.text != "" {
+                //            var user: User!
+                //            user = User(context: context)
+                //            user.weight = Int16(weightText.text!)!
+                var units: Int
+                let weight = weightText.text!
+                
+                if weightUnit == nil || weightUnit == 0 {
+                    units = 0
+                } else {
+                    units = 1
+                }
+                
+                delegate?.updateWeight(weight: Int(weight)!, units: units)
+                navigationController?.popViewController(animated: true)
+                dismiss(animated: true, completion: nil)
             }
         }
+        
+        
     }
     
-//    func attemptFetch(){
-//        
-//        let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
-//        
-//        do {
-//            let results = try context.fetch(fetchedInfo)
-//            print("^^^^^^^^^^^^^^^^^^^^^^^")
-//            print(results)
-//        } catch {
-//            return
-//        }
-//        
     
-//    }
+    
+    
+    //    func attemptFetch(){
+    //
+    //        let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
+    //
+    //        do {
+    //            let results = try context.fetch(fetchedInfo)
+    //            print("^^^^^^^^^^^^^^^^^^^^^^^")
+    //            print(results)
+    //        } catch {
+    //            return
+    //        }
+    //
+    
+    //    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
