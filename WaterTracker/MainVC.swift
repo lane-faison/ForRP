@@ -105,6 +105,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         user.weight = Int16(weight)
         user.units = Int16(units)
+        user.date = Date() as NSDate
         
         
         ad.saveContext()
@@ -171,7 +172,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         print("Attempting Fetch##############")
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
-        let weightSort = NSSortDescriptor(key: "id", ascending: true)
+        let weightSort = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [weightSort]
         
         
