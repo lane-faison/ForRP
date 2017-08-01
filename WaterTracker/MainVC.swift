@@ -48,8 +48,28 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     
     let completedLevelLabel: UILabel = {
         let label = UILabel()
-        label.text = "100%"
-        label.font = UIFont(name: "Avenir next", size: 10)
+        label.text = "100% -"
+        label.font = UIFont(name: "Avenir next", size: 18)
+        label.textColor = ColorScheme.darkPrimaryColor
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let emptyLevelLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0% -"
+        label.font = UIFont(name: "Avenir next", size: 18)
+        label.textColor = ColorScheme.darkPrimaryColor
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let halfLevelLabel: UILabel = {
+        let label = UILabel()
+        label.text = "50% -"
+        label.font = UIFont(name: "Avenir next", size: 18)
         label.textColor = ColorScheme.darkPrimaryColor
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +105,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         view.addSubview(titleLabel)
         view.addSubview(amountPicker)
         view.addSubview(addButton)
+        view.addSubview(completedLevelLabel)
+        view.addSubview(emptyLevelLabel)
+        view.addSubview(halfLevelLabel)
         
         amountPicker.delegate = self
         amountPicker.dataSource = self
@@ -146,10 +169,20 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
         waterView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-//        completedLevelLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
-//        completedLevelLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
-//        completedLevelLabel.leadingAnchor.constraint(equalTo: waterView.trailingAnchor).isActive = true
-//        completedLevelLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor).isActive = true
+        completedLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 12).isActive = true
+        completedLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        completedLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        completedLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -108).isActive = true
+        
+        emptyLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 187).isActive = true
+        emptyLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        emptyLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        emptyLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -113).isActive = true
+        
+        halfLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 100).isActive = true
+        halfLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        halfLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        halfLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -110).isActive = true
     }
     
     func setupOptions() {
