@@ -136,12 +136,6 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
     }
     
-//    func updateLevel(){
-//        
-//        
-//        
-//    }
-    
     func goToSetWeight(){
         performSegue(withIdentifier: "toSetWeight", sender: nil)
     }
@@ -178,17 +172,17 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         completedLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 12).isActive = true
         completedLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         completedLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        completedLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -108).isActive = true
+        completedLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
         
-        emptyLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 187).isActive = true
+        emptyLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 185).isActive = true
         emptyLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         emptyLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        emptyLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -113).isActive = true
+        emptyLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
         
         halfLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 100).isActive = true
         halfLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         halfLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        halfLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -110).isActive = true
+        halfLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
     }
     
     func setupOptions() {
@@ -229,7 +223,15 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         let information = controller.fetchedObjects
         guard let currentInformation = information?[0] else { return }
         
-       
+        if currentInformation.weight != nil {
+            if currentInformation.units == 0 {
+            completedLevelLabel.text = ("\(currentInformation.weight) oz.")
+            } else {
+            completedLevelLabel.text = ("\(currentInformation.weight) kgs.")
+            }
+        }
+        
+        
         
         print("######WEIGHT: \(currentInformation.weight)")
         print("######UNITS: \(currentInformation.units)")
