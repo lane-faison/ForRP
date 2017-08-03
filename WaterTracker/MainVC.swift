@@ -136,6 +136,12 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
     }
     
+//    func updateLevel(){
+//        
+//        
+//        
+//    }
+    
     func goToSetWeight(){
         performSegue(withIdentifier: "toSetWeight", sender: nil)
     }
@@ -222,6 +228,8 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         }
         let information = controller.fetchedObjects
         guard let currentInformation = information?[0] else { return }
+        
+       
         
         print("######WEIGHT: \(currentInformation.weight)")
         print("######UNITS: \(currentInformation.units)")

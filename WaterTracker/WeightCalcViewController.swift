@@ -112,7 +112,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         weightPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         weightPicker.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        weightPicker.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        weightPicker.widthAnchor.constraint(equalToConstant: 180).isActive = true
         weightPicker.topAnchor.constraint(equalTo: describeText.bottomAnchor).isActive = true
     }
     
