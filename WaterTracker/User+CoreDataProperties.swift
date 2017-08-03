@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  WaterTracker
 //
-//  Created by Ryan Phillips on 8/1/17.
+//  Created by Ryan Phillips on 8/3/17.
 //  Copyright © 2017 Ryan Phillips. All rights reserved.
 //
 

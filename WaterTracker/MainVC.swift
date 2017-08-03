@@ -223,9 +223,13 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         let information = controller.fetchedObjects
         guard let currentInformation = information?[0] else { return }
         
+//        Lane
+        
+        let weightAsString = currentInformation.weight
+        
         if currentInformation.weight != nil {
             if currentInformation.units == 0 {
-            completedLevelLabel.text = ("\(currentInformation.weight) oz.")
+            completedLevelLabel.text = weightAsString * 2
             } else {
             completedLevelLabel.text = ("\(currentInformation.weight) kgs.")
             }
