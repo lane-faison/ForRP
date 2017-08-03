@@ -46,9 +46,19 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         return label
     }()
     
+    let ouncesLevelLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Goal"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
+        label.textColor = ColorScheme.darkPrimaryColor
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let completedLevelLabel: UILabel = {
         let label = UILabel()
-        label.text = "100% -"
+        label.text = "- 100%"
         label.font = UIFont(name: "Avenir next", size: 18)
         label.textColor = ColorScheme.darkPrimaryColor
         label.textAlignment = .center
@@ -58,7 +68,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     
     let emptyLevelLabel: UILabel = {
         let label = UILabel()
-        label.text = "0% -"
+        label.text = "- 0%"
         label.font = UIFont(name: "Avenir next", size: 18)
         label.textColor = ColorScheme.darkPrimaryColor
         label.textAlignment = .center
@@ -68,7 +78,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     
     let halfLevelLabel: UILabel = {
         let label = UILabel()
-        label.text = "50% -"
+        label.text = "- 50%"
         label.font = UIFont(name: "Avenir next", size: 18)
         label.textColor = ColorScheme.darkPrimaryColor
         label.textAlignment = .center
@@ -108,6 +118,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         view.addSubview(completedLevelLabel)
         view.addSubview(emptyLevelLabel)
         view.addSubview(halfLevelLabel)
+        view.addSubview(ouncesLevelLabel)
         
         amountPicker.delegate = self
         amountPicker.dataSource = self
@@ -169,20 +180,27 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
         waterView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
+        
+        
+        ouncesLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 12).isActive = true
+        ouncesLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        ouncesLevelLabel.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        ouncesLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
+        
         completedLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 12).isActive = true
         completedLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         completedLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        completedLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
+        completedLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: 112).isActive = true
         
         emptyLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 185).isActive = true
         emptyLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         emptyLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        emptyLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
+        emptyLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: 112).isActive = true
         
         halfLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 100).isActive = true
         halfLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         halfLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        halfLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: -112).isActive = true
+        halfLevelLabel.centerXAnchor.constraint(equalTo: waterImageView.centerXAnchor, constant: 112).isActive = true
     }
     
     func setupOptions() {
@@ -223,22 +241,21 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         let information = controller.fetchedObjects
         guard let currentInformation = information?[0] else { return }
         
-//        Lane
+        var maxAmount: Int
         
-        let weightAsString = currentInformation.weight
+        maxAmount = (currentInformation.units == 0) ? Int(currentInformation.weight) * 2/3 : Int(currentInformation.weight) * 2/3
         
-        if currentInformation.weight != nil {
-            if currentInformation.units == 0 {
-            completedLevelLabel.text = weightAsString * 2
-            } else {
-            completedLevelLabel.text = ("\(currentInformation.weight) kgs.")
-            }
-        }
-        
+        ouncesLevelLabel.text = "\(maxAmount) oz"
         
         
         print("######WEIGHT: \(currentInformation.weight)")
         print("######UNITS: \(currentInformation.units)")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        attemptFetch()
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
