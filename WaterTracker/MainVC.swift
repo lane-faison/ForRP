@@ -49,7 +49,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     let ouncesLevelLabel: UILabel = {
         let label = UILabel()
         label.text = "Goal"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 18)
         label.textColor = ColorScheme.darkPrimaryColor
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -243,9 +243,23 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         var maxAmount: Int
         
-        maxAmount = (currentInformation.units == 0) ? Int(currentInformation.weight) * 2/3 : Int(currentInformation.weight) * 2/3
+        if currentInformation.units == 0 {
+            
+            maxAmount = Int(currentInformation.weight) * 2/3
+            
+            ouncesLevelLabel.text = "\(maxAmount) oz"
+        } else {
+            
+            maxAmount = Int(currentInformation.weight) / 30 * 1000
+            
+            ouncesLevelLabel.text = "\(maxAmount) ml"
+            
+        }
         
-        ouncesLevelLabel.text = "\(maxAmount) oz"
+        
+//        maxAmount = (currentInformation.units == 0) ? Int(currentInformation.weight) * 2/3 : Int(currentInformation.weight) / 30 * 1000
+//        
+//        ouncesLevelLabel.text = "\(maxAmount) oz"
         
         
         print("######WEIGHT: \(currentInformation.weight)")
