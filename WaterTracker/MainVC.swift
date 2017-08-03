@@ -105,12 +105,14 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         return button
     }()
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Calculate Goal", style: .plain, target: self, action: #selector(goToSetWeight))
-    
+        
         view.addSubview(backView)
         view.addSubview(titleLabel)
         view.addSubview(amountPicker)
