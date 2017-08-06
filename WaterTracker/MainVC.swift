@@ -86,6 +86,16 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         return label
     }()
     
+    let currentLevelLabel: UILabel = {
+        let label = UILabel()
+        label.text = "100"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 25)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let amountPicker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -121,6 +131,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         view.addSubview(emptyLevelLabel)
         view.addSubview(halfLevelLabel)
         view.addSubview(ouncesLevelLabel)
+        view.addSubview(currentLevelLabel)
         
         amountPicker.delegate = self
         amountPicker.dataSource = self
@@ -173,6 +184,12 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         waterImageView.bottomAnchor.constraint(equalTo: backView.bottomAnchor).isActive = true
         waterImageView.widthAnchor.constraint(equalTo: backView.widthAnchor, constant: -60).isActive = true
         waterImageView.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
+        
+        currentLevelLabel.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
+        currentLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        currentLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        currentLevelLabel.centerYAnchor.constraint(equalTo: backView.centerYAnchor, constant: 75).isActive = true
+        
 
     }
     
