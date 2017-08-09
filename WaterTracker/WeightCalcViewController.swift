@@ -32,6 +32,16 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return text
     }()
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "WaterTracker"
+        label.font = UIFont(name: "Avenir next", size: 40)
+        label.textColor = ColorScheme.darkPrimaryColor
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     let describeText: UITextView = {
         let describe = UITextView()
         describe.font = UIFont(name: "Avenir next", size: 12)
@@ -77,6 +87,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(describeText)
         view.addSubview(saveButton)
         view.addSubview(weightPicker)
+        view.addSubview(titleLabel)
         
         displayWeightSection()
 //        attemptFetch()
@@ -94,6 +105,11 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     func displayWeightSection() {
+        
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: weightText.topAnchor, constant: 50).isActive = true
         
         weightText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         weightText.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
