@@ -291,6 +291,12 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
     }
     
+//    func addWater() {
+//            
+//            currentLevelLabel.text = amountPicker.selectedRow(inComponent: "\(amounts[row])")
+//    
+//    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -304,6 +310,8 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        currentLevelLabel.text = "\(amounts[row])"
         
     }
 
