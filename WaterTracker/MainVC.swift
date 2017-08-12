@@ -264,7 +264,6 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         guard let currentInformation = information?[0] else { return }
         
         var maxAmount: Double
-//        var convertedAmount: Double
         
         if currentInformation.units == 0 {
             
@@ -286,8 +285,8 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
 
         
         
-        print("######WEIGHT: \(currentInformation.weight)")
-        print("######UNITS: \(currentInformation.units)")
+        print("WEIGHT: \(currentInformation.weight)")
+        print("UNITS: \(currentInformation.units)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -296,7 +295,15 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
     }
     
-   
+    func addWater() {
+        
+        let selectedPicker: Int = amountPicker.selectedRow(inComponent: 0)
+        
+        addedArray.append(selectedPicker)
+        
+        print("######################")
+        print(addedArray)
+    }
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -312,34 +319,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        
-        
-//            currentLevelLabel.text = "\(amounts[row])"
+
         
     }
-    
-    func addWater() {
-        
-//        amountPicker.selectedRow(inComponent: <#T##Int#>)
-        
-    }
-    
-    
-    
-    
-//    func addWater(){
-//        
-//        let row = amountPicker.tag
-//        
-//        if addButton.isSelected {
-//            
-//            amountPicker[row].append
-//            
-//            
-//        }
-//        
-//    }
 
 }
 
