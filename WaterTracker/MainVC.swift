@@ -51,7 +51,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     let ouncesLevelLabel: UILabel = {
         let label = UILabel()
         label.text = "Goal"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 12)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 18)
         label.textColor = ColorScheme.darkPrimaryColor
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

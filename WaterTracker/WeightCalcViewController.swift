@@ -52,6 +52,16 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return describe
     }()
     
+//    let describeText2: UITextView = {
+//        let describe2 = UITextView()
+//        describe2.font = UIFont(name: "Avenir next", size: 12)
+//        describe2.textColor = .black
+//        describe2.text = "Goal based on body weight divided by 30 converted into milliliters"
+//        describe2.textAlignment = .center
+//        describe2.translatesAutoresizingMaskIntoConstraints = false
+//        return describe2
+//    }()
+    
     let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 30
@@ -88,9 +98,10 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(saveButton)
         view.addSubview(weightPicker)
         view.addSubview(titleLabel)
+//        view.addSubview(describeText2)
         
         displayWeightSection()
-//        attemptFetch()
+        //        attemptFetch()
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(WeightCalcViewController.dismissKeyboard))
@@ -116,11 +127,6 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         weightText.widthAnchor.constraint(equalToConstant: 230).isActive = true
         weightText.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        describeText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        describeText.topAnchor.constraint(equalTo: weightText.bottomAnchor).isActive = true
-        describeText.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        describeText.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
         saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         saveButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -130,6 +136,23 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         weightPicker.heightAnchor.constraint(equalToConstant: 120).isActive = true
         weightPicker.widthAnchor.constraint(equalToConstant: 180).isActive = true
         weightPicker.topAnchor.constraint(equalTo: describeText.bottomAnchor).isActive = true
+        
+        
+//        if weightUnit == nil || weightUnit == 0 {
+        
+        describeText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        describeText.topAnchor.constraint(equalTo: weightText.bottomAnchor).isActive = true
+        describeText.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        describeText.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            
+//        } else {
+//            
+//            describeText2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//            describeText2.topAnchor.constraint(equalTo: weightText.bottomAnchor).isActive = true
+//            describeText2.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//            describeText2.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//        
+//        }
     }
     
     func setWeight() {
@@ -144,9 +167,13 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 let weight = weightText.text!
                 
                 if weightUnit == nil || weightUnit == 0 {
+                    
                     units = 0
+                    
                 } else {
+                    
                     units = 1
+                    
                 }
                 
                 delegate?.updateWeight(weight: Int(weight)!, units: units)
@@ -158,23 +185,19 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
-    
-    
-    
-    //    func attemptFetch(){
-    //
-    //        let fetchedInfo: NSFetchRequest<User> = User.fetchRequest()
-    //
-    //        do {
-    //            let results = try context.fetch(fetchedInfo)
-    //            print("^^^^^^^^^^^^^^^^^^^^^^^")
-    //            print(results)
-    //        } catch {
-    //            return
-    //        }
-    //
-    
-    //    }
+//    func updateDescribeText() {
+//        
+//        if weightUnit == nil || weightUnit == 0 {
+//            
+//            describeText.text = "Goal based on 2/3 of body weight converted into ounces"
+//            
+//        } else {
+//            
+//            describeText.text = "Goal based on body weight divided by 30 converted into milliliters"
+//            
+//        }
+//        
+//    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
