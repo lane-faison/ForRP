@@ -17,6 +17,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     
     var addedArray: Array<Any> = []
     
+    
     let backView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -119,8 +120,8 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         return button
     }()
     
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,12 +141,12 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         amountPicker.dataSource = self
         
         amountPicker.selectRow(15, inComponent: 0, animated: true)
-
+        
         setupWaterFeature()
         displayWater()
         setupOptions()
         attemptFetch()
-    
+        
     }
     
     func updateWeight(weight: Int, units: Int) {
@@ -173,7 +174,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
             weightCalcVC.delegate = self
         }
     }
-
+    
     func setupWaterFeature() {
         backView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         backView.topAnchor.constraint(equalTo: view.topAnchor, constant: 64).isActive = true
@@ -193,7 +194,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         currentLevelLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
         currentLevelLabel.centerYAnchor.constraint(equalTo: backView.centerYAnchor, constant: 75).isActive = true
         
-
+        
     }
     
     func displayWater() {
@@ -229,7 +230,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: 10).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-  
+        
         amountPicker.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         amountPicker.heightAnchor.constraint(equalToConstant: 120).isActive = true
         amountPicker.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -278,11 +279,11 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
             maxAmount = Double(currentInformation.weight) / 30 * 1000
             
             let convertedNumber: Int = Int(maxAmount)
-    
+            
             ouncesLevelLabel.text = "\(convertedNumber) ml"
             
         }
-
+        
         
         
         print("WEIGHT: \(currentInformation.weight)")
@@ -295,14 +296,24 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
     }
     
+    func sumOfNumbers(numbers: [Int]) -> Int {
+        var total = 0
+        for i in numbers {
+            total += i
+        }
+        return total
+    }
+    
     func addWater() {
         
         let selectedPicker: Int = amountPicker.selectedRow(inComponent: 0)
         
-        addedArray.append(selectedPicker + 1)
+        addedArray.append(selectedPicker + 1 )
+        
+        sumOfNumbers(numbers: addedArray as! [Int])
         
         print("######################")
-        print(addedArray)
+        print(sumOfNumbers)
     }
     
     
@@ -319,9 +330,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
+        
         
     }
-
+    
 }
 
