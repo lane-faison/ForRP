@@ -299,7 +299,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         let selectedPicker: Int = amountPicker.selectedRow(inComponent: 0)
         
-        addedArray.append(selectedPicker)
+        addedArray.append(selectedPicker + 1)
         
         print("######################")
         print(addedArray)
