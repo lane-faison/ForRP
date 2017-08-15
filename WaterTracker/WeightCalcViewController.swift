@@ -52,15 +52,15 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return describe
     }()
     
-//    let describeText2: UITextView = {
-//        let describe2 = UITextView()
-//        describe2.font = UIFont(name: "Avenir next", size: 12)
-//        describe2.textColor = .black
-//        describe2.text = "Goal based on body weight divided by 30 converted into milliliters"
-//        describe2.textAlignment = .center
-//        describe2.translatesAutoresizingMaskIntoConstraints = false
-//        return describe2
-//    }()
+    //    let describeText2: UITextView = {
+    //        let describe2 = UITextView()
+    //        describe2.font = UIFont(name: "Avenir next", size: 12)
+    //        describe2.textColor = .black
+    //        describe2.text = "Goal based on body weight divided by 30 converted into milliliters"
+    //        describe2.textAlignment = .center
+    //        describe2.translatesAutoresizingMaskIntoConstraints = false
+    //        return describe2
+    //    }()
     
     let saveButton: UIButton = {
         let button = UIButton(type: .system)
@@ -98,7 +98,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.addSubview(saveButton)
         view.addSubview(weightPicker)
         view.addSubview(titleLabel)
-//        view.addSubview(describeText2)
+        //        view.addSubview(describeText2)
         
         displayWeightSection()
         //        attemptFetch()
@@ -137,22 +137,15 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         weightPicker.widthAnchor.constraint(equalToConstant: 180).isActive = true
         weightPicker.topAnchor.constraint(equalTo: describeText.bottomAnchor).isActive = true
         
-        
-//        if weightUnit == nil || weightUnit == 0 {
+    }
+    
+    func describeTextPounds() {
         
         describeText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         describeText.topAnchor.constraint(equalTo: weightText.bottomAnchor).isActive = true
         describeText.widthAnchor.constraint(equalToConstant: 200).isActive = true
         describeText.heightAnchor.constraint(equalToConstant: 40).isActive = true
-            
-//        } else {
-//            
-//            describeText2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//            describeText2.topAnchor.constraint(equalTo: weightText.bottomAnchor).isActive = true
-//            describeText2.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//            describeText2.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//        
-//        }
+        
     }
     
     func setWeight() {
@@ -160,9 +153,7 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if delegate != nil {
             
             if weightText.text != "" {
-                //            var user: User!
-                //            user = User(context: context)
-                //            user.weight = Int16(weightText.text!)!
+    
                 var units: Int
                 let weight = weightText.text!
                 
@@ -185,19 +176,19 @@ class WeightCalcViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
-//    func updateDescribeText() {
-//        
-//        if weightUnit == nil || weightUnit == 0 {
-//            
-//            describeText.text = "Goal based on 2/3 of body weight converted into ounces"
-//            
-//        } else {
-//            
-//            describeText.text = "Goal based on body weight divided by 30 converted into milliliters"
-//            
-//        }
-//        
-//    }
+    //    func updateDescribeText() {
+    //
+    //        if weightUnit == nil || weightUnit == 0 {
+    //
+    //            describeText.text = "Goal based on 2/3 of body weight converted into ounces"
+    //
+    //        } else {
+    //
+    //            describeText.text = "Goal based on body weight divided by 30 converted into milliliters"
+    //
+    //        }
+    //
+    //    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
