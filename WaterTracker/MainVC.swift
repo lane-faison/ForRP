@@ -90,9 +90,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         return label
     }()
     
-    let currentLevelLabel: UILabel = {
+    var currentLevelLabel: UILabel = {
         let label = UILabel()
-        label.text = "100"
+        label.text = "0"
         label.font = UIFont(name: "AvenirNext-Bold", size: 25)
         label.textColor = .lightGray
         label.textAlignment = .center
@@ -302,6 +302,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         }
         print(total)
         waterHeight = total
+        currentLevelLabel.text = "\(String(describing: total))"
         self.displayWaterHeight()
     }
     
