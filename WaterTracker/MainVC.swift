@@ -94,7 +94,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         let label = UILabel()
         label.text = "100"
         label.font = UIFont(name: "AvenirNext-Bold", size: 25)
-        label.textColor = .white
+        label.textColor = .lightGray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
