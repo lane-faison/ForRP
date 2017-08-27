@@ -200,6 +200,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     func displayWaterHeight() {
         
         guard let newHeight = waterHeight else { return }
+        
         waterView.heightAnchor.constraint(equalToConstant: CGFloat(newHeight)).isActive = true
         waterView.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
         waterView.widthAnchor.constraint(equalTo: waterImageView.widthAnchor).isActive = true
@@ -306,7 +307,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         print(total)
         waterHeight = total
         currentLevelLabel.text = "\(String(describing: total))"
-        
+    
         self.displayWaterHeight()
         
     }
