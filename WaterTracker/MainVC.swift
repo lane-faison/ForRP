@@ -198,11 +198,13 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     }
     
     func displayWaterHeight() {
+        
         guard let newHeight = waterHeight else { return }
         waterView.heightAnchor.constraint(equalToConstant: CGFloat(newHeight)).isActive = true
         waterView.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
         waterView.widthAnchor.constraint(equalTo: waterImageView.widthAnchor).isActive = true
         waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
+        
     }
     
     func displayWater() {
@@ -300,12 +302,16 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         for i in numbers {
             total += i
         }
+        
         print(total)
         waterHeight = total
         currentLevelLabel.text = "\(String(describing: total))"
+        
         self.displayWaterHeight()
+        
     }
     
+
     func addWater() {
         
         let selectedPicker: Int = amountPicker.selectedRow(inComponent: 0)
