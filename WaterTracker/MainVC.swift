@@ -310,7 +310,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         waterHeight = total
         currentLevelLabel.text = "\(String(describing: total))"
     
-        self.view.layoutIfNeeded()
+//        self.view.layoutIfNeeded()
         self.displayWaterHeight()
         
 
@@ -322,7 +322,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         let selectedPicker: Int = amountPicker.selectedRow(inComponent: 0)
         
-        addedArray.append(selectedPicker + 1 )
+        addedArray.append(selectedPicker + 1)
         
         print("######################")
         print(addedArray)
@@ -338,6 +338,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return amounts.count
     }
     
