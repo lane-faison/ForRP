@@ -267,6 +267,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
             print("\(error)")
         }
         let information = controller.fetchedObjects
+        
+        print(information)
+        
         guard let currentInformation = information?[0] else { return }
         
         var maxAmount: Double
