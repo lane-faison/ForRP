@@ -16,7 +16,6 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
     var amounts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128]
     
     var addedArray: [Int] = []
-    var waterHeight: Int?
     var isPounds = true
     
     let backView: UIView = {
@@ -121,13 +120,15 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         return button
     }()
     
-    
+    var waterHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        waterHeight = NSLayoutConstraint(item: waterView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 0)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Calculate Goal", style: .plain, target: self, action: #selector(goToSetWeight))
- 
+        
         view.addSubview(backView)
         view.addSubview(titleLabel)
         view.addSubview(amountPicker)
@@ -197,19 +198,21 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
     }
     
-    func displayWaterHeight() {
-        
-        guard let newHeight = waterHeight else { return }
-        waterView.heightAnchor.constraint(equalToConstant: CGFloat(newHeight)).isActive = true
-        waterView.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
-        waterView.widthAnchor.constraint(equalTo: waterImageView.widthAnchor).isActive = true
-        waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
-        
-        self.view.layoutIfNeeded()
-        
+    func displayWaterHeight(height: Int) {
+        self.waterView.layoutIfNeeded()
+        UIView.animate(withDuration: 1) {
+            self.waterHeight.constant = CGFloat(height)
+            self.waterView.layoutIfNeeded()
+        }
     }
     
     func displayWater() {
+        
+        waterView.centerXAnchor.constraint(equalTo: backView.centerXAnchor).isActive = true
+        waterView.widthAnchor.constraint(equalTo: waterImageView.widthAnchor).isActive = true
+        waterView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -10).isActive = true
+        waterHeight.isActive = true
+        
         ouncesLevelLabel.topAnchor.constraint(equalTo: waterImageView.topAnchor, constant: 12).isActive = true
         ouncesLevelLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         ouncesLevelLabel.widthAnchor.constraint(equalToConstant: 75).isActive = true
@@ -266,42 +269,41 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
             let error = error as NSError
             print("\(error)")
         }
-        let information = controller.fetchedObjects
+        guard let information = controller.fetchedObjects else { return }
         
         print(information)
         
-        guard let currentInformation = information?[0] else { return }
-        
-        var maxAmount: Double
-        
-        if currentInformation.units == 0 {
-            isPounds = true
-            maxAmount = Double(currentInformation.weight) * 2/3
+        if information.count > 0 {
+            let currentInformation = information[0]
             
-            let convertedNumber: Int = Int(maxAmount)
+            var maxAmount: Double
             
-            ouncesLevelLabel.text = "\(convertedNumber) oz"
-            
-        } else {
-            isPounds = false
-            maxAmount = Double(currentInformation.weight) / 30 * 1000
-            
-            let convertedNumber: Int = Int(maxAmount)
-            
-            ouncesLevelLabel.text = "\(convertedNumber) ml"
-            
+            if currentInformation.units == 0 {
+                isPounds = true
+                maxAmount = Double(currentInformation.weight) * 2/3
+                
+                let convertedNumber: Int = Int(maxAmount)
+                
+                ouncesLevelLabel.text = "\(convertedNumber) oz"
+                
+            } else {
+                isPounds = false
+                maxAmount = Double(currentInformation.weight) / 30 * 1000
+                
+                let convertedNumber: Int = Int(maxAmount)
+                
+                ouncesLevelLabel.text = "\(convertedNumber) ml"
+                
+            }
+            amountPicker.reloadAllComponents()
+            print("WEIGHT: \(currentInformation.weight)")
+            print("UNITS: \(currentInformation.units)")
         }
-        amountPicker.reloadAllComponents()
-        print("WEIGHT: \(currentInformation.weight)")
-        print("UNITS: \(currentInformation.units)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         attemptFetch()
-        
     }
-    
     
     func sumOfNumbers(numbers: [Int]) {
         var total = 0
@@ -310,17 +312,11 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         }
         
         print(total)
-        waterHeight = total
         currentLevelLabel.text = "\(String(describing: total))"
-    
-//        self.view.layoutIfNeeded()
-        self.displayWaterHeight()
         
-
-        
+        self.displayWaterHeight(height: total)
     }
     
-
     func addWater() {
         
         let selectedPicker: Int = amountPicker.selectedRow(inComponent: 0)
@@ -332,9 +328,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, NS
         
         // Rebuild the height of the water level
         sumOfNumbers(numbers: addedArray)
-
     }
-    
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
